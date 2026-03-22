@@ -542,6 +542,126 @@
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; text-align: center; }
       .footer-links { justify-content: center; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── BLOG ── */
+    #blog {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .blog-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .blog-card:hover {
+      border-color: rgba(0,255,133,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .blog-card:hover::before { transform: scaleX(1); }
+    .blog-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      background: rgba(0,255,133,0.08);
+      border: 1px solid rgba(0,255,133,0.18);
+      border-radius: 6px;
+      padding: 0.25rem 0.65rem;
+      margin-bottom: 1rem;
+    }
+    .blog-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    .blog-excerpt {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      flex: 1;
+    }
+    .blog-toggle {
+      margin-top: 1.5rem;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--green);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.6rem 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+    }
+    .blog-toggle:hover {
+      background: rgba(0,255,133,0.06);
+      border-color: rgba(0,255,133,0.3);
+    }
+    .blog-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
+    .blog-body.open { max-height: 3000px; }
+    .blog-body-inner {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+    .blog-body-inner h4 {
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .blog-body-inner p { margin-bottom: 0.85rem; }
+    .blog-body-inner .blog-stat {
+      font-size: 0.82rem;
+      color: var(--green);
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+    .blog-cta-bar {
+      margin-top: 3.5rem;
+      text-align: center;
+    }
+    .blog-cta-bar p {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -554,6 +674,7 @@
       <li><a href="#home" onclick="closeMenu()">Home</a></li>
       <li><a href="#services" onclick="closeMenu()">Services</a></li>
       <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#blog" onclick="closeMenu()">Blog</a></li>
       <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Book a Call</a></li>
     </ul>
     <div class="nav-toggle" id="navToggle" onclick="toggleMenu()" aria-label="Menu">
@@ -683,6 +804,116 @@
     </div>
   </section>
 
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="section-header">
+      <span class="section-label">Insights</span>
+      <h2>Resources for small<br />business owners.</h2>
+      <p class="section-sub">Practical guides on AI, systems, and growth — written for business owners who are building something real.</p>
+    </div>
+    <div class="blog-grid">
+
+      <!-- Post 1 -->
+      <article class="blog-card">
+        <span class="blog-tag">AI Strategy</span>
+        <h3>How AI Can Cut Your Small Business Operating Costs by 40%</h3>
+        <p class="blog-excerpt">Running a small business means wearing every hat — operations, marketing, sales, customer service. Here's how the right AI tools can cut your operational time significantly.</p>
+        <button class="blog-toggle" onclick="togglePost(this)" aria-expanded="false">Read Article →</button>
+        <div class="blog-body">
+          <div class="blog-body-inner">
+            <p>Time is your scarcest resource as a small business owner — and a significant chunk of it is eaten up by repetitive tasks that don't actually grow the business. That's where AI comes in. Not the sci-fi version — the practical, accessible tools available right now.</p>
+            <h4>1. Automate Your Customer Communications</h4>
+            <p>AI-powered chatbots and email automation tools can handle a large percentage of routine inquiries automatically, around the clock. Tools like ChatGPT integrations, Intercom, or simple AI-generated email templates can reduce your response time from hours to seconds.</p>
+            <p class="blog-stat">⏱ Time saved: 5–10 hours per week for most small businesses.</p>
+            <h4>2. Use AI to Handle Your Admin Work</h4>
+            <p>Scheduling meetings, writing follow-up emails, creating invoices, generating reports — these tasks add up fast. AI tools like Google's Gemini, Microsoft Copilot, or Claude can draft emails in seconds, summarize documents, and generate reports from your data in minutes instead of hours.</p>
+            <p class="blog-stat">⏱ Time saved: 3–7 hours per week.</p>
+            <h4>3. AI-Powered Marketing</h4>
+            <p>AI content tools can generate first drafts of social media posts, blog content, and ad copy in minutes. This alone allows small businesses to compete with larger companies that have full marketing teams.</p>
+            <p class="blog-stat">⏱ Time saved: 4–8 hours per week.</p>
+            <h4>4. Smarter Inventory and Operations Forecasting</h4>
+            <p>For product-based businesses, AI forecasting tools analyze your sales data and predict inventory needs with far more accuracy than manual spreadsheets — reducing waste and stockouts.</p>
+            <h4>The Bottom Line</h4>
+            <p>You don't need a tech team or a massive budget to start using AI in your business. You need a clear picture of where your time is going and a plan to address the biggest drains first. That's exactly what we help small business owners do at DFW Group LLC.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="blog-card">
+        <span class="blog-tag">Business Consulting</span>
+        <h3>5 Signs Your Small Business Needs a Consultant Right Now</h3>
+        <p class="blog-excerpt">Most small business owners wait too long before bringing in outside help. By the time they look for a consultant, they're already stuck. Here are five signs you need strategic support now.</p>
+        <button class="blog-toggle" onclick="togglePost(this)" aria-expanded="false">Read Article →</button>
+        <div class="blog-body">
+          <div class="blog-body-inner">
+            <p>The truth is, the best time to work with a consultant is before things get critical. Here are five signs that your business would benefit from outside strategic support right now.</p>
+            <h4>Sign 1: You're Working More Hours But Not Making More Money</h4>
+            <p>If your hours keep going up but revenue stays flat, you have a systems problem. You're likely doing things manually that should be automated, missing revenue opportunities because you're too busy, or operating without a clear strategy.</p>
+            <h4>Sign 2: You Don't Have Clear Processes for Anything</h4>
+            <p>If the way things get done in your business lives entirely in your head — if you can't step away for a week without everything breaking down — you don't have a business, you have a job. Building documented SOPs is one of the fastest ways to create a business that scales.</p>
+            <h4>Sign 3: You're Not Sure What's Actually Working</h4>
+            <p>Are you running ads but unsure if they're profitable? Marketing on social media but not tracking leads? If you can't tell what's working and what isn't, you can't make good decisions. A consultant helps you build the tracking and analytics foundation you need.</p>
+            <h4>Sign 4: You've Hit a Growth Ceiling</h4>
+            <p>Every business hits a point where the strategies that got you here won't get you to the next level. If revenue has plateaued, an outside perspective is often exactly what's needed to identify what needs to change.</p>
+            <h4>Sign 5: You Keep Starting Projects You Never Finish</h4>
+            <p>Strategy without execution is just dreaming. If you have a list of half-finished initiatives — a website that's been "almost ready" for months, a marketing campaign stuck in planning — a consultant helps you prioritize ruthlessly and execute.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="blog-card">
+        <span class="blog-tag">AI Consulting</span>
+        <h3>What Is AI Consulting and Does Your Small Business Need It?</h3>
+        <p class="blog-excerpt">"AI consulting" is a term you're hearing everywhere. But for most small business owners, it's still unclear what it actually means — and whether it applies to them. Here's the honest answer.</p>
+        <button class="blog-toggle" onclick="togglePost(this)" aria-expanded="false">Read Article →</button>
+        <div class="blog-body">
+          <div class="blog-body-inner">
+            <p>AI consulting helps businesses figure out where and how to use artificial intelligence to save time, cut costs, and grow faster. And yes, it absolutely applies to small businesses.</p>
+            <h4>What AI Consulting Actually Involves</h4>
+            <p><strong style="color:var(--white)">Step 1 — Audit your operations.</strong> Where are you spending the most time? What tasks are repetitive? Where are the bottlenecks?</p>
+            <p><strong style="color:var(--white)">Step 2 — Identify AI opportunities.</strong> Match your specific pain points to the tools that address them — from automating customer emails to generating marketing content faster.</p>
+            <p><strong style="color:var(--white)">Step 3 — Build a roadmap.</strong> Create a prioritized plan starting with the changes that will have the biggest impact in the shortest time.</p>
+            <p><strong style="color:var(--white)">Step 4 — Implement and optimize.</strong> Set up the tools, train your team, and track results. Adjust as you learn what works.</p>
+            <h4>What AI Can Actually Do for a Small Business</h4>
+            <p>Customer service automation, AI-generated marketing content, automated invoicing and reporting, AI-assisted sales follow-up, and smart financial management — the practical applications are broader than most owners realize.</p>
+            <h4>Do You Need an AI Consultant?</h4>
+            <p>You don't always need a consultant to start. But if you're unsure where to start, overwhelmed by the options, or want to implement in the right order — that's where a consultant adds serious value. At DFW Group LLC, we cut through the noise and focus on what will actually move the needle for your specific business.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 4 -->
+      <article class="blog-card">
+        <span class="blog-tag">Operations</span>
+        <h3>The Small Business Owner's Guide to Building Systems That Scale</h3>
+        <p class="blog-excerpt">The difference between a small business that stays small and one that grows is almost always systems. Not luck. Not more hustle. Systems. Here's how to build them.</p>
+        <button class="blog-toggle" onclick="togglePost(this)" aria-expanded="false">Read Article →</button>
+        <div class="blog-body">
+          <div class="blog-body-inner">
+            <p>A system is a documented, repeatable process for getting something done — consistently, without depending entirely on one person's memory. Without systems, your business can only grow as fast as you can personally manage.</p>
+            <h4>Step 1: Identify Your Core Processes</h4>
+            <p>List every recurring activity: sales, customer onboarding, order fulfillment, marketing, invoicing, customer support. These are the candidates for systemization. Prioritize by asking: what breaks first when I step away?</p>
+            <h4>Step 2: Document Before You Optimize</h4>
+            <p>Before improving anything, document how you currently do it. Walk through the process step by step and write it down. Voice memos, screen recordings, or simple written SOPs all work. This forces clarity and gives you a baseline to improve from.</p>
+            <h4>Step 3: Automate What You Can</h4>
+            <p>Once a process is documented, ask: does a human need to do each of these steps? Routine tasks — follow-up emails, appointment reminders, data entry, social media scheduling — can be automated. AI tools make this more powerful than ever.</p>
+            <h4>Step 4: Build for Someone Else to Run It</h4>
+            <p>The true test of a good system is whether someone else can execute it without your help. Write your SOPs as if explaining them to a competent new hire who knows nothing about your business.</p>
+            <h4>Step 5: Review and Improve Quarterly</h4>
+            <p>Systems aren't set-and-forget. Schedule a quarterly review and ask: is this still working? Is there a better way? The businesses that scale fastest treat their systems as living documents that improve over time.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <div class="blog-cta-bar">
+      <p>Ready to put these strategies to work in your business?</p>
+      <a href="#contact" class="btn-primary">Book a Free Strategy Call</a>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="contact-wrapper">
@@ -704,8 +935,7 @@
         </div>
       </div>
       <div class="contact-form">
-        <!-- Replace YOUR_FORM_ID with your Formspree form ID after signing up at formspree.io -->
-        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/mvzwjodz" method="POST">
           <div class="form-row">
             <div class="form-group">
               <label for="fname">First Name</label>
@@ -760,6 +990,7 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#blog">Blog</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </footer>
@@ -771,6 +1002,16 @@
     }
     function closeMenu() {
       document.getElementById('navLinks').classList.remove('open');
+    }
+
+    // Blog post expand/collapse
+    function togglePost(btn) {
+      const card = btn.closest('.blog-card');
+      const body = card.querySelector('.blog-body');
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      btn.textContent = isOpen ? 'Read Article →' : 'Close Article ✕';
+      btn.setAttribute('aria-expanded', String(!isOpen));
     }
 
     // Contact form — AJAX submit for Formspree
